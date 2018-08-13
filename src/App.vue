@@ -1,133 +1,22 @@
 <template>
   <div id="app">
-    <div id='calcOut'>
-    <h1>Online Calculator</h1>
-      <div id='calcTop' >
-        <h1 id='numArea'>{{ numberDisplay }}</h1>
-      </div>
-
-      <div id='calRow'>
-      <button @click="cPressed">C</button> 
-      <button>()</button> 
-      <button>%</button> 
-      <button>/</button> 
-      </div>
-
-      <div id='calRow'>
-      <button @click="num7Pressed">7</button>
-      <button @click="num8Pressed">8</button>
-      <button @click="num9Pressed">9</button> 
-      <button>X</button> 
-      </div>
-      <div id='calRow'>
-      <button @click="num4Pressed">4</button>
-      <button @click="num5Pressed">5</button>
-      <button @click="num6Pressed">6</button> 
-      <button>-</button> 
-      </div>
-      <div id='calRow'>
-      <button @click="num1Pressed" >1</button> 
-      <button @click='num2Pressed' >2</button>
-      <button @click="num3Pressed">3</button>
-      <button>+</button>
-      </div>
-      <div id='calRow'>
-      <button>.</button>
-      <button @click="num0Pressed">0</button>
-      <button>+/-</button>
-      <button>=</button>
-      </div>
+    <basecalc></basecalc>
     </div>
-    
-    
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-  </div>
 </template>
 
 <script>
+import BaseCalculator from './Components/BaseCalculator.vue';
 export default {
-  name: "app",
+  components: {
+    basecalc: BaseCalculator,
+  },
   data() {
     return {
       msg: "Hey Buddy!!",
-      numberDisplay: 0
     };
   },
   methods: {
-    num0Pressed() {
-      if( this.numberDisplay === 0 ){
-        this.numberDisplay = 0;
-      } else { 
-        this.numberDisplay += '0';
-      }
-    },
-    num1Pressed() {
-      if (this.numberDisplay === 0) {
-        this.numberDisplay = "1";
-      } else {
-        this.numberDisplay += "1";
-      }
-    },
-    num2Pressed() {
-      if (this.numberDisplay === 0) {
-        this.numberDisplay = "2";
-      } else {
-        this.numberDisplay += "2";
-      }
-    },
-    num3Pressed() {
-      if (this.numberDisplay === 0) {
-        this.numberDisplay = "3";
-      } else {
-        this.numberDisplay += "3";
-      }
-    },
-    num4Pressed() {
-      if (this.numberDisplay === 0) {
-        this.numberDisplay = "4";
-      } else {
-        this.numberDisplay += "4";
-      }
-    },
-    num5Pressed() {
-      if (this.numberDisplay === 0) {
-        this.numberDisplay = "5";
-      } else {
-        this.numberDisplay += "5";
-      }
-    },
-    num6Pressed() {
-      if ((this.numberDisplay === 0)) {
-        this.numberDisplay = "6";
-      } else {
-        this.numberDisplay += "6";
-      }
-    },
-    num7Pressed() {
-      if ((this.numberDisplay === 0)) {
-        this.numberDisplay = "7";
-      } else {
-        this.numberDisplay += "7";
-      }
-    },
-    num8Pressed() {
-      if ((this.numberDisplay === 0)) {
-        this.numberDisplay = "8";
-      } else {
-        this.numberDisplay += "8";
-      }
-    },
-    num9Pressed() {
-      if( this.numberDisplay === 0 ) {
-        this.numberDisplay = '9';
-      } else { 
-        this.numberDisplay += '9';
-      }
-    },
-    cPressed() {
-      this.numberDisplay = 0;
-    }
+    
   },
   computed: {}
 }
