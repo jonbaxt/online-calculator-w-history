@@ -54,43 +54,4 @@ li {
 a {
   color: #42b983;
 }
-
-#calcOut {
-  width: 600px;
-  height: 700px;
-  background: gray;
-  border: solid gray 1px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  /* padding: 0px; */
-}
-#calRow {
-  display: flex;
-  flex-direction: row;
-}
-
-#calcOut { 
- div { 
-   button {
-  width: 75px;
-  height: 75px;
-  font-size: 30px;
- }
- }
-}
-#calcTop {
-  width: 300px;
-  height: 50px;
-  background: lightblue;
-}
-#numArea {
-  text-align: right;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 10px;
-  margin-right: 15px;
-}
 </style>
