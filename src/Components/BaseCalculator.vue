@@ -40,7 +40,7 @@
       <div id='calRow'>
       <button @click="dotPressed">.</button>
       <button @click="num0Pressed">0</button>
-      <button>+/-</button>
+      <button @click="plusMinusPressed" >+/-</button>
       <button @click='equalPressed'>=</button>
       </div>
     </div>
@@ -62,6 +62,7 @@ export default {
       operatorStore: '',
       num2Store: 0,
       finalSolutionStore: 0,
+      solutionsArray: ['2 + 2 = 4', '1 + 1 = 2' ],
     
     };
   },
@@ -167,6 +168,14 @@ export default {
       if(this.num1Store === 0) {
         this.num1Store = Number(this.numberDisplay);
         this.numberDisplay = 0;
+      }
+    },
+    plusMinusPressed() {
+      let tempStore = this.numberDisplay;
+      if(tempStore.charAt(0) === '-'){
+        this.numberDisplay = tempStore.slice(1);
+      } else {
+        this.numberDisplay = '-' + tempStore;
       }
     },
     timesPressed() {
