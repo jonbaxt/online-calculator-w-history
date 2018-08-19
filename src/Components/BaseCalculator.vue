@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div id='inner'>
     <div id='calcOut'>
     <h1>Online Calculator</h1>
     <arithscreen :num1Store='num1Store' :num2Store='num2Store' :operatorStore='operatorStore' :finalSolutionStore='finalSolutionStore' ></arithscreen>
@@ -40,45 +41,54 @@
       <div id='calRow'>
       <button @click="dotPressed">.</button>
       <button @click="num0Pressed">0</button>
-      <button @click="plusMinusPressed" >+/-</button>
+      <button @click="plusMinusPressed">+/-</button>
       <button @click='equalPressed'>=</button>
-      </div>
+        </div>
     </div>
+    <div id='solutionsArea'>
+      <storedsolutions></storedsolutions>
+    </div>
+      </div>
+
+    <footer id='bottom'>
+      <p>Created by Jonathan Baxter 2018</p>
+    </footer>
   </div>
 </template>
 
 <script>
-import ArithmeticScreen from './ArithmeticScreen.vue';
+import ArithmeticScreen from "./ArithmeticScreen.vue";
+import StoredSolutions from './StoredSolutions.vue';
 export default {
   components: {
     arithscreen: ArithmeticScreen,
+    storedsolutions: StoredSolutions,
   },
   data() {
     return {
       msg: "Hey Buddy!!",
       numberDisplay: 0,
-      operatorDisplay: '',
+      operatorDisplay: "",
       num1Store: 0,
-      operatorStore: '',
+      operatorStore: "",
       num2Store: 0,
       finalSolutionStore: 0,
-      solutionsArray: ['2 + 2 = 4', '1 + 1 = 2' ],
-    
+      solutionsArray: ["2 + 2 = 4", "1 + 1 = 2"]
     };
   },
   methods: {
     dotPressed() {
-      if( this.numberDisplay === 0){
-        this.numberDisplay = '0.';
+      if (this.numberDisplay === 0) {
+        this.numberDisplay = "0.";
       } else {
-        this.numberDisplay += '.';
+        this.numberDisplay += ".";
       }
     },
     num0Pressed() {
-      if( this.numberDisplay === 0){
+      if (this.numberDisplay === 0) {
         this.numberDisplay = 0;
-      } else { 
-        this.numberDisplay += '0';
+      } else {
+        this.numberDisplay += "0";
       }
     },
     num1Pressed() {
@@ -117,87 +127,86 @@ export default {
       }
     },
     num6Pressed() {
-      if ((this.numberDisplay === 0)) {
+      if (this.numberDisplay === 0) {
         this.numberDisplay = "6";
       } else {
         this.numberDisplay += "6";
       }
     },
     num7Pressed() {
-      if ((this.numberDisplay === 0)) {
+      if (this.numberDisplay === 0) {
         this.numberDisplay = "7";
       } else {
         this.numberDisplay += "7";
       }
     },
     num8Pressed() {
-      if ((this.numberDisplay === 0)) {
+      if (this.numberDisplay === 0) {
         this.numberDisplay = "8";
       } else {
         this.numberDisplay += "8";
       }
     },
     num9Pressed() {
-      if( this.numberDisplay === 0 ) {
-        this.numberDisplay = '9';
-      } else { 
-        this.numberDisplay += '9';
+      if (this.numberDisplay === 0) {
+        this.numberDisplay = "9";
+      } else {
+        this.numberDisplay += "9";
       }
     },
     cPressed() {
       this.numberDisplay = 0;
       this.num1Store = 0;
       this.num2Store = 0;
-      this.operatorDisplay = '';
-      this.operatorStore = '';
+      this.operatorDisplay = "";
+      this.operatorStore = "";
       this.finalSolutionStore = 0;
     },
     plusPressed() {
-        this.operatorDisplay = '+';
-        this.operatorStore = '+';
-        if(this.num1Store === 0){
+      this.operatorDisplay = "+";
+      this.operatorStore = "+";
+      if (this.num1Store === 0) {
         this.num1Store = Number(this.numberDisplay);
         this.numberDisplay = 0;
         // this.numberDisplay = 0;
-        }
-
+      }
     },
     minusPressed() {
-      this.operatorDisplay = '-';
-      this.operatorStore = '-';
-      if(this.num1Store === 0) {
+      this.operatorDisplay = "-";
+      this.operatorStore = "-";
+      if (this.num1Store === 0) {
         this.num1Store = Number(this.numberDisplay);
         this.numberDisplay = 0;
       }
     },
     plusMinusPressed() {
       let tempStore = this.numberDisplay;
-      if(tempStore.charAt(0) === '-'){
+      if (tempStore.charAt(0) === "-") {
         this.numberDisplay = tempStore.slice(1);
       } else {
-        this.numberDisplay = '-' + tempStore;
+        this.numberDisplay = "-" + tempStore;
       }
     },
     timesPressed() {
-      this.operatorDisplay = 'X';
-      this.operatorStore = 'X';
-      if(this.num1Store === 0){
+      this.operatorDisplay = "X";
+      this.operatorStore = "X";
+      if (this.num1Store === 0) {
         this.num1Store = Number(this.numberDisplay);
         this.numberDisplay = 0;
       }
     },
     dividePressed() {
-      this.operatorDisplay = '/';
-      this.operatorStore = '/';
-      if(this.num1Store === 0){
+      this.operatorDisplay = "/";
+      this.operatorStore = "/";
+      if (this.num1Store === 0) {
         this.num1Store = Number(this.numberDisplay);
         this.numberDisplay = 0;
       }
     },
     remainderPressed() {
-      this.operatorDisplay = '%';
-      this.operatorStore = '%';
-      if( this.num1Store === 0 ){
+      this.operatorDisplay = "%";
+      this.operatorStore = "%";
+      if (this.num1Store === 0) {
         this.num1Store = Number(this.numberDisplay);
         this.numberDisplay = 0;
       }
@@ -205,27 +214,25 @@ export default {
 
     equalPressed() {
       this.num2Store = Number(this.numberDisplay);
-      if(this.operatorStore === '+'){
+      if (this.operatorStore === "+") {
         this.finalSolutionStore = this.num1Store + this.num2Store;
         // this.operatorStore = '';
-      } else if( this.operatorStore === '-') {
+      } else if (this.operatorStore === "-") {
         this.finalSolutionStore = this.num1Store - this.num2Store;
-      } else if( this.operatorStore === 'X') {
+      } else if (this.operatorStore === "X") {
         this.finalSolutionStore = this.num1Store * this.num2Store;
-      } else if( this.operatorStore === '/') {
+      } else if (this.operatorStore === "/") {
         this.finalSolutionStore = this.num1Store / this.num2Store;
-      } else if( this.operatorStore === '%' ) {
+      } else if (this.operatorStore === "%") {
         this.finalSolutionStore = this.num1Store % this.num2Store;
       }
 
-
       this.numberDisplay = 0;
-      this.operatorDisplay = '';
+      this.operatorDisplay = "";
     }
-
   },
   computed: {}
-}
+};
 </script>
 
 <style lang="scss">
@@ -241,11 +248,15 @@ export default {
   align-items: center;
   /* margin-top: 60px; */
 }
+#inner {
+  display: flex;
+  flex-direction: row;
+}
 #calcOut {
-  width: 600px;
+  // width: 600px;
   height: 700px;
-  background: gray;
-  border: solid gray 1px;
+  // background: gray;
+  // border: solid gray 1px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -258,14 +269,15 @@ export default {
   flex-direction: row;
 }
 
-#calcOut { 
- div { 
-   button {
-  width: 75px;
-  height: 75px;
-  font-size: 30px;
- }
- }
+#calcOut {
+  div {
+    button {
+      width: 75px;
+      height: 75px;
+      font-size: 30px;
+      background: lightgreen;
+    }
+  }
 }
 #calcTop {
   width: 300px;
@@ -283,10 +295,20 @@ export default {
   margin-right: 15px;
 }
 #opArea {
-    text-align: left;
+  text-align: left;
   font-size: 30px;
   font-weight: bold;
   margin-top: 10px;
   margin-left: 15px;
+}
+#solutionsArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#bottom {
+  p {
+    text-align: left;
+  }
 }
 </style>
